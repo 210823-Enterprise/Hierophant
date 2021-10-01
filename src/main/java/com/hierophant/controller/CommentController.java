@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hierophant.model.Comments;
+import com.hierophant.model.Comment;
 import com.hierophant.service.CommentService;
 
 @RestController
@@ -20,26 +20,26 @@ public class CommentController {
 	CommentService commentService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Comments>> findById(@PathVariable("id") int id) {
+	public ResponseEntity<Optional<Comment>> findById(@PathVariable("id") int id) {
 		return null;
 //		return ResponseEntity.ok(commentService.findById(id));
 	}
 	
 	@GetMapping("/user/{username}")
-	public ResponseEntity<List<Comments>> findByUsername(@PathVariable("username") String username) {
+	public ResponseEntity<List<Comment>> findByUsername(@PathVariable("username") String username) {
 		return null;
 //		return ResponseEntity.ok(commentService.findByUsername(username));
 	}
 
 	@GetMapping("/user/{id}")
-	public ResponseEntity<List<Comments>> findByUserId(@PathVariable("id") int id) {
+	public ResponseEntity<List<Comment>> findByUserId(@PathVariable("id") int id) {
 		return null;
 //		return ResponseEntity.ok(commentService.findByUserId(id));
 	}
 	
 	// Later
 //	@PostMapping("/create")
-//	public ResponseEntity<Comments> create(@Valid @RequestBody Comments c) { 											
+//	public ResponseEntity<Comment> create(@Valid @RequestBody Comments c) { 											
 //		return ResponseEntity.ok(commentService.insert(c));
 //	}
 }

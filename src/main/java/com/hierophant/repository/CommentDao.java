@@ -5,14 +5,14 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.hierophant.model.Comments;
+import com.hierophant.model.Comment;
 
-public interface CommentDao extends JpaRepository<Comments, Integer> {
+public interface CommentDao extends JpaRepository<Comment, Integer> {
 	
 	// finds a single comment
-	public Optional<Comments> findById(int id);
+	public Optional<Comment> findById(int id);
 	
 	// finds all the comments from a specific user
-	public List<Comments> findByUsername(String username);
-	public List<Comments> findByUserId(int id);
+	public List<Comment> findByUsername(String username);
+	public List<Comment> findByUserId(int id);
 }
