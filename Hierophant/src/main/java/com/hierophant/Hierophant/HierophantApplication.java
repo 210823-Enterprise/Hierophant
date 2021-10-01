@@ -10,4 +10,7 @@ public class HierophantApplication {
 		SpringApplication.run(HierophantApplication.class, args);
 	}
 
+	/**
+	 * Adding comments
+	 */
 }
