@@ -1,4 +1,4 @@
-package com.hierophant.Hierophant;
+package com.hierophant;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
