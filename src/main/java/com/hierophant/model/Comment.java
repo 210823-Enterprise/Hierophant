@@ -6,7 +6,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -14,21 +13,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "images")
+@Table(name = "comments")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Image {
-	@Column(name = "image_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
+public class Comment {
+	@Column(name = "com_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToOne(mappedBy = "post_image_id")
-	int image_id;
-	
-	String img_html;//html link to template
-	
-	String top_text;//text in the top half
-	String bottom_text;//test in the bottom half
-	
+	int com_id;// unique id for each comment
 
-	
+	@ManyToOne(fetch = FetchType.LAZY)
+	String com_owner;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	int com_post_id;
+
+	String comm_text;
+
+	int upvotes;
 }

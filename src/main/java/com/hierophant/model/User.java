@@ -1,5 +1,47 @@
 package com.hierophant.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
+@Entity
+@Table(name = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
+
+	@Id
+	@Column(name = "user_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is																			// primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int user_id;// unique id for each user
+
+	@NotBlank
+	@Length(min = 2, max = 30)
+	@Pattern(regexp = "[a-zA-Z][a-zA-Z0-9]*")
+	String username;// username, 1-30 length
+
+	@NotEmpty
+	@Length(min = 4)
+	String password;// user password, 1-30 length
+	
+	@Email // must contain @ and .something
+	String email;// user email, email format
 
 }
