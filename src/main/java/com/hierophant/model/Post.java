@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,23 +29,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
+	@Id
 	@Column(name = "post_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy = "com_post_id", cascade = CascadeType.ALL, orphanRemoval = true)
 	int post_id;// unique id for each post
 
 	String post_title;
-
-	@OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL, orphanRemoval = true)
-	int post_owner_id;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
+	User owner;
 
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "post_image_id", referencedColumnName = "image_id")
-	int post_image_id;
-	
+	Image image;
+
 	int upvotes;
 	
-	@OneToMany(mappedBy = "com_id", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<Comment> comments = new ArrayList<>();
 	
 	public void addComment(Comment comment) {
