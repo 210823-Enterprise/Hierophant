@@ -1,5 +1,5 @@
 package com.hierophant.model;
 
-public class empty {
+public class Post {
 
 }

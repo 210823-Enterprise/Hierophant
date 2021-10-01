@@ -1,5 +1,5 @@
 package com.hierophant.controller;
 
-public class Test {
+public class PostController {
 
 }
