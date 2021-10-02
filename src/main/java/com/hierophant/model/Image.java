@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Image {
-	@Column(name = "image_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@OneToOne(mappedBy = "post_image_id")
 	int image_id;
