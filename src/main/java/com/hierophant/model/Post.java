@@ -30,24 +30,24 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Post {
 	@Id
-	@Column(name = "post_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
+	@Column(name = "postId", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int post_id;// unique id for each post
+	private int postId;// unique id for each post
 
-	String post_title;
+	private String title;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_id", referencedColumnName = "user_id")
-	User owner;
+	@OneToOne(cascade = CascadeType.ALL, targetEntity=User.class)
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+	private User userId;
 
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_image_id", referencedColumnName = "image_id")
-	Image image;
+	@OneToOne(cascade = CascadeType.ALL, targetEntity=Image.class)
+    @JoinColumn(name = "postImageId", referencedColumnName = "imageId")
+	private Image image;
 
-	int upvotes;
+	private int upvotes;
 	
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-	List<Comment> comments = new ArrayList<>();
+	@OneToMany(mappedBy = "postId", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity=Comment.class)
+	private List<Comment> comments = new ArrayList<>();
 	
 	public void addComment(Comment comment) {
         comments.add(comment);

@@ -20,27 +20,27 @@ public class PostController {
 	PostService postService;
 	
 	@GetMapping("/{title}")
-	public ResponseEntity<Optional<Post>> findByTitle(@PathVariable("title") String title) {
-		return null;
-//		return ResponseEntity.ok(postService.findByTitle(title));
+	public ResponseEntity<Optional<Post>> findByTitle(@PathVariable("title") String postTitle) {
+//		return null;
+		return ResponseEntity.ok(postService.findByTitle(postTitle));
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Post>> findById(@PathVariable("id") int id) {
-		return null;
-//		return ResponseEntity.ok(postService.findById(id));
+	public ResponseEntity<Optional<Post>> findById(@PathVariable("id") int comId) {
+//		return null;
+		return ResponseEntity.ok(postService.findById(comId));
 	}
 	
-	@GetMapping("/user/{username}")
-	public ResponseEntity<List<Post>> findByUsername(@PathVariable("username") String username) {
-		return null;
-//		return ResponseEntity.ok(postService.findByUsername(username));
-	}
+//	@GetMapping("/user/{username}")
+//	public ResponseEntity<List<Post>> findByUserName(@PathVariable("username") String userName) {
+////		return null;
+//		return ResponseEntity.ok(postService.findByUserName(userName));
+//	}
 
 	@GetMapping("/user/{id}")
-	public ResponseEntity<List<Post>> findByUserId(@PathVariable("id") int id) {
-		return null;
-//		return ResponseEntity.ok(postService.findById(id));
+	public ResponseEntity<List<Post>> findByUserId(@PathVariable("id") int userId) {
+//		return null;
+		return ResponseEntity.ok(postService.findByUserId(userId));
 	}
 	
 	// Later

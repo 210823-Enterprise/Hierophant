@@ -20,7 +20,7 @@ public class CommentService {
 	
 	
 	@Autowired
-	private CommentDao commentDao;
+	CommentDao commentDao;
 	
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -34,19 +34,19 @@ public class CommentService {
 		return comment;
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Comment> findById(int com_id)
+	public Optional<Comment> findById(int comId)
 	{
-		return commentDao.findById(com_id);	
+		return commentDao.findById(comId);	
 	}
+//	@Transactional(propagation = Propagation.REQUIRES_NEW)
+//	public List<Comment> findByUserName(String userName)
+//	{
+//		return commentDao.findByUsername(userName);	
+//	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Comment> findByUserName(String userName)
+	public List<Comment> findByUserId(int userId)
 	{
-		return commentDao.findByUsername(userName);	
-	}
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Comment> findByUserId(int user_id)
-	{
-		return commentDao.findByUserId(user_id);	
+		return commentDao.findByUserId(userId);	
 	}
 	
 	
