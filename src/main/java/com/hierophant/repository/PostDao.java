@@ -12,12 +12,12 @@ import com.hierophant.model.Post;
 public interface PostDao extends JpaRepository<Post, Integer>{
 	
 	// finds the post based on its title 
-	public Optional<Post> findByTitle(String postTitle);
+	public Optional<Post> findByTitle(String post_title);
 	
 	// finds the post based on its id
-	public Optional<Post> findById(int comId);
+	public Optional<Post> findById(int com_id);
 	
 	// finds all the post from a particular user
 //	public List<Post> findByUsername(String userName);
-	public List<Post> findByUserId(int userId);
+	public List<Post> findByUserId(int user_id);
 }

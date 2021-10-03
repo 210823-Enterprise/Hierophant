@@ -33,7 +33,7 @@ public class PostService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Post> findById(int comId)
+	public Optional<Post> findById(int com_id)
 	{
 
 		try
@@ -47,20 +47,20 @@ public class PostService {
 		return null;
 	}
 	
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Post> findByUserName(String userName)
-	{
-		try
-		{
-		return postDao.findByUsername(userName);
-		}
-		catch(IllegalArgumentException e)
-		{
-			Log.warn("In PostService.findByUsername() userName was invalid. Returning null.");
-		}
-		return null;
-		
-	}
+//	@Transactional(propagation = Propagation.REQUIRES_NEW)
+//	public List<Post> findByUserName(String userName)
+//	{
+//		try
+//		{
+//		return postDao.findByUsername(userName);
+//		}
+//		catch(IllegalArgumentException e)
+//		{
+//			Log.warn("In PostService.findByUsername() userName was invalid. Returning null.");
+//		}
+//		return null;
+//		
+//	}
 	
 //	@Transactional(propagation = Propagation.REQUIRES_NEW)
 //	public List<Post> findByUserName(String userName)
@@ -70,7 +70,7 @@ public class PostService {
 
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Post> findByUserId(int userId)
+	public List<Post> findByUserId(int user_id)
 	{
 
 		
@@ -87,12 +87,12 @@ public class PostService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Post> findByTitle(String postTitle)
+	public Optional<Post> findByTitle(String post_title)
 	{
 
 		try
 		{
-			return postDao.findByTitle(title);	
+			return postDao.findByTitle(post_title);	
 		}
 		catch(IllegalArgumentException e)
 		{
