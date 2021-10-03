@@ -14,9 +14,9 @@ import com.hierophant.model.Comment;
 public interface CommentDao extends JpaRepository<Comment, Integer> {
 	
 	// finds a single comment
-	public Optional<Comment> findById(int com_id);
+	public Optional<Comment> findById(int comId);
 	
 	// finds all the comments from a specific user
 //	public List<Comment> findByUsername(String userName);
-	public List<Comment> findByUserId(int user_id);
+	public List<Comment> findByUserId(int userId);
 }
