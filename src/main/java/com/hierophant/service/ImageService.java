@@ -17,7 +17,7 @@ public class ImageService {
 	@Autowired
 	private ImageDao imgDao;
 	
-	Logger Log = LoggerFactory.getLogger(this.getClass());
+	Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Image add(Image img)
@@ -32,17 +32,17 @@ public class ImageService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Image> findById(int img_id)
+	public Optional<Image> findById(int imgId)
 	{
 		try
 		{
-		return imgDao.findById(img_id);	
+		return imgDao.findById(imgId);	
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In ImageService.findById() img_id was invalid. Returning null.");
+			log.warn("In ImageService.findById() imgId was invalid. Returning null.");
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 }
