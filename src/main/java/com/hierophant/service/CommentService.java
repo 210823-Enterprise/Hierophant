@@ -5,6 +5,8 @@ package com.hierophant.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,7 +19,7 @@ import com.hierophant.repository.CommentDao;
 @Service
 public class CommentService {
 
-	
+	Logger Log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private CommentDao commentDao;
@@ -36,17 +38,41 @@ public class CommentService {
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Optional<Comment> findById(int com_id)
 	{
+		try
+		{
 		return commentDao.findById(com_id);	
+		}
+		catch(IllegalArgumentException e)
+		{
+			Log.warn("In CommentService.findById() com_id was invalid. Returning null.");
+		}
+		return null;
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public List<Comment> findByUserName(String userName)
 	{
+		try
+		{
 		return commentDao.findByUsername(userName);	
+		}
+		catch(IllegalArgumentException e)
+		{
+			Log.warn("In CommentService.findUserName() userName was invalid. Returning null.");
+		}
+		return null;
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public List<Comment> findByUserId(int user_id)
 	{
-		return commentDao.findByUserId(user_id);	
+		try
+		{
+		return commentDao.findByUserId(user_id);
+		}
+		catch(IllegalArgumentException e)
+		{
+			Log.warn("In CommentService.findByUserId() user_id was invalid. Returning null.");
+		}
+		return null;
 	}
 	
 	
