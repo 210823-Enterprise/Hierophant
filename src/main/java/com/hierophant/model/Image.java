@@ -22,13 +22,13 @@ import lombok.NoArgsConstructor;
 public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToOne(mappedBy = "post_image_id")
-	int image_id;
+//	@OneToOne(mappedBy = "post_image_id") // THIS IS THE ONLY ONE THAT CAUSE THE ERROR I HAVE TO COMMENT IT OUT
+	private int imageId;
 	
-	String img_html;//html link to template
+	private String imgHtml;//html link to template
 	
-	String top_text;//text in the top half
-	String bottom_text;//test in the bottom half
+	private String topText;//text in the top half
+	private String bottomText;//test in the bottom half
 	
 
 	
