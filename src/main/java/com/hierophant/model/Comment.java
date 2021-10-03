@@ -20,17 +20,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Comment {
 	@Id
-	@Column(name = "com_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
+	@Column(name = "comId", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int com_id;// unique id for each comment
+	private int comId;// unique id for each comment
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	User user;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity=User.class)
+	private User userId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	Post post;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity=Post.class)
+	private Post postId;
 	
-	String comm_text;
+	private String commText;
 
-	int upvotes;
+	private int upvotes;
 }

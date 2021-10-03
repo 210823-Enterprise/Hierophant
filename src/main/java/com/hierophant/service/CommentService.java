@@ -22,7 +22,7 @@ public class CommentService {
 	Logger Log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private CommentDao commentDao;
+	CommentDao commentDao;
 	
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -36,8 +36,9 @@ public class CommentService {
 		return comment;
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Comment> findById(int com_id)
+	public Optional<Comment> findById(int comId)
 	{
+
 		try
 		{
 		return commentDao.findById(com_id);	
@@ -47,10 +48,17 @@ public class CommentService {
 			Log.warn("In CommentService.findById() com_id was invalid. Returning null.");
 		}
 		return null;
+
 	}
+//	@Transactional(propagation = Propagation.REQUIRES_NEW)
+//	public List<Comment> findByUserName(String userName)
+//	{
+//		return commentDao.findByUsername(userName);	
+//	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Comment> findByUserName(String userName)
+	public List<Comment> findByUserId(int userId)
 	{
+
 		try
 		{
 		return commentDao.findByUsername(userName);	
@@ -73,6 +81,7 @@ public class CommentService {
 			Log.warn("In CommentService.findByUserId() user_id was invalid. Returning null.");
 		}
 		return null;
+
 	}
 	
 	

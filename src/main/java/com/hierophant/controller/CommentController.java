@@ -20,21 +20,21 @@ public class CommentController {
 	CommentService commentService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Comment>> findById(@PathVariable("id") int id) {
-		return null;
-//		return ResponseEntity.ok(commentService.findById(id));
+	public ResponseEntity<Optional<Comment>> findById(@PathVariable("id") int comId) {
+		// return null;
+		return ResponseEntity.ok(commentService.findById(comId));
 	}
 	
-	@GetMapping("/user/{username}")
-	public ResponseEntity<List<Comment>> findByUsername(@PathVariable("username") String username) {
-		return null;
-//		return ResponseEntity.ok(commentService.findByUsername(username));
-	}
+//	@GetMapping("/user/{username}")
+//	public ResponseEntity<List<Comment>> findByUserName(@PathVariable("username") String userName) {
+//		// return null;
+//		return ResponseEntity.ok(commentService.findByUserName(userName));
+//	}
 
 	@GetMapping("/user/{id}")
-	public ResponseEntity<List<Comment>> findByUserId(@PathVariable("id") int id) {
-		return null;
-//		return ResponseEntity.ok(commentService.findByUserId(id));
+	public ResponseEntity<List<Comment>> findByUserId(@PathVariable("id") int userId) {
+		// return null;
+		return ResponseEntity.ok(commentService.findByUserId(userId));
 	}
 	
 	// Later

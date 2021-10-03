@@ -35,23 +35,23 @@ import org.hibernate.validator.constraints.Length;
 public class User {
 
 	@Id
-	@Column(name = "user_id", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is																			// primary key
+	@Column(name = "userId", nullable = false, unique = true, updatable = false) // non-nullable and unique =tru is																			// primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int user_id;// unique id for each user
+	private int userId;// unique id for each user
 
 	@NotBlank
 	@Length(min = 2, max = 30)
 	@Pattern(regexp = "[a-zA-Z][a-zA-Z0-9]*")
-	String username;// username, 1-30 length
+	private String username;// username, 1-30 length
 
 	@NotEmpty
 	@Length(min = 4)
-	String password;// user password, 1-30 length
+	private String password;// user password, 1-30 length
 	
 	@Email // must contain @ and .something
-	String email;// user email, email format
+	private String email;// user email, email format
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	List<Comment> comments = new ArrayList<>();
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity=Comment.class)
+	private List<Comment> comments = new ArrayList<>();
 
 }
