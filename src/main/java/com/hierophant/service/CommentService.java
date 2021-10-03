@@ -35,7 +35,7 @@ public class CommentService {
 		return comment;
 	}
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Comment> findById(int comId)
+	public Optional<Comment> findById(int com_id)
 	{
 
 		try
@@ -48,21 +48,6 @@ public class CommentService {
 		}
 		return Optional.empty();
 
-	}
-
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Comment> findByUserId(int userId)
-	{
-
-		try
-		{
-		//return commentDao.findByUsername(userId);	
-		}
-		catch(IllegalArgumentException e)
-		{
-			log.warn("In CommentService.findUserName() userName was invalid. Returning null.");
-		}
-		return null;
 	}
 	
 	

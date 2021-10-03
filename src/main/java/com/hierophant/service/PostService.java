@@ -33,7 +33,7 @@ public class PostService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Post> findById(int comId)
+	public Optional<Post> findById(int com_id)
 	{
 
 		try
@@ -46,7 +46,7 @@ public class PostService {
 		}
 		return Optional.empty();
 	}
-	
+
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public List<Post> findByUserName(String userName)
 	{
@@ -61,16 +61,11 @@ public class PostService {
 		return null;
 		
 	}
-	
-//	@Transactional(propagation = Propagation.REQUIRES_NEW)
-//	public List<Post> findByUserName(String userName)
-//	{
-//		return postDao.findByUsername(userName);	
-//	}
+
 
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Post> findByUserId(int userId)
+	public List<Post> findByUserId(int user_id)
 	{
 
 		
@@ -87,12 +82,14 @@ public class PostService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Post> findByTitle(String postTitle)
+	public Optional<Post> findByTitle(String post_title)
 	{
 
 		try
 		{
+
 			return postDao.findByTitle(postTitle);	
+
 		}
 		catch(IllegalArgumentException e)
 		{
