@@ -17,7 +17,7 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	Logger Log = LoggerFactory.getLogger(this.getClass());
+	Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public User add(User user)
@@ -32,17 +32,17 @@ public class UserService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<User> findById(int user_id)
+	public Optional<User> findById(int userId)
 	{
 		try
 		{
-			return userDao.findById(user_id);	
+			return userDao.findById(userId);	
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In UserService.findById() user_id was invalid. Returning null.");
+			log.warn("In UserService.findById() user_id was invalid. Returning null.");
 		}
-		return null;
+		return Optional.empty();
 		
 	}
 	
@@ -55,9 +55,9 @@ public class UserService {
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In UserService.findByUsername() userName was invalid. Returning null.");
+			log.warn("In UserService.findByUsername() userName was invalid. Returning null.");
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 }

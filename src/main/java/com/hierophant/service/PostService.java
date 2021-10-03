@@ -18,7 +18,7 @@ public class PostService {
 	@Autowired
 	private PostDao postDao;
 	
-	Logger Log = LoggerFactory.getLogger(this.getClass());
+	Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Post add(Post post)
@@ -38,13 +38,13 @@ public class PostService {
 
 		try
 		{
-		return postDao.findById(com_id);
+		return postDao.findById(comId);
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In PostService.findById() com_id was invalid. Returning null.");
+			log.warn("In PostService.findById() com_id was invalid. Returning null.");
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -52,11 +52,11 @@ public class PostService {
 	{
 		try
 		{
-		return postDao.findByUsername(userName);
+		//return postDao.findByUsername(userName);
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In PostService.findByUsername() userName was invalid. Returning null.");
+			log.warn("In PostService.findByUsername() userName was invalid. Returning null.");
 		}
 		return null;
 		
@@ -76,11 +76,11 @@ public class PostService {
 		
 		try
 		{
-			return postDao.findByUserId(user_id);	
+			return postDao.findByUserId(userId);	
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In PostService.findByUserId() user_id was invalid. Returning null.");
+			log.warn("In PostService.findByUserId() user_id was invalid. Returning null.");
 		}
 		return null;
 
@@ -92,13 +92,13 @@ public class PostService {
 
 		try
 		{
-			return postDao.findByTitle(title);	
+			return postDao.findByTitle(postTitle);	
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In PostService.findByTitle() title was invalid. Returning null.");
+			log.warn("In PostService.findByTitle() title was invalid. Returning null.");
 		}
-		return null;
+		return Optional.empty();
 
 	}
 }

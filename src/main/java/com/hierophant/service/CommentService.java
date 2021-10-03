@@ -13,13 +13,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hierophant.model.Comment;
-import com.hierophant.model.User;
 import com.hierophant.repository.CommentDao;
 
 @Service
 public class CommentService {
 
-	Logger Log = LoggerFactory.getLogger(this.getClass());
+	Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	CommentDao commentDao;
@@ -41,48 +40,31 @@ public class CommentService {
 
 		try
 		{
-		return commentDao.findById(com_id);	
+		return commentDao.findById(comId);	
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In CommentService.findById() com_id was invalid. Returning null.");
+			log.warn("In CommentService.findById() com_id was invalid. Returning null.");
 		}
-		return null;
+		return Optional.empty();
 
 	}
-//	@Transactional(propagation = Propagation.REQUIRES_NEW)
-//	public List<Comment> findByUserName(String userName)
-//	{
-//		return commentDao.findByUsername(userName);	
-//	}
+
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public List<Comment> findByUserId(int userId)
 	{
 
 		try
 		{
-		return commentDao.findByUsername(userName);	
+		//return commentDao.findByUsername(userId);	
 		}
 		catch(IllegalArgumentException e)
 		{
-			Log.warn("In CommentService.findUserName() userName was invalid. Returning null.");
+			log.warn("In CommentService.findUserName() userName was invalid. Returning null.");
 		}
 		return null;
 	}
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Comment> findByUserId(int user_id)
-	{
-		try
-		{
-		return commentDao.findByUserId(user_id);
-		}
-		catch(IllegalArgumentException e)
-		{
-			Log.warn("In CommentService.findByUserId() user_id was invalid. Returning null.");
-		}
-		return null;
-
-	}
+	
 	
 	
 }
