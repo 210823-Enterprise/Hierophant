@@ -24,16 +24,7 @@ public class CommentService {
 	CommentDao commentDao;
 	
 	
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Comment add(Comment comment)
-	{
-		return comment;
-	}
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Comment remove(Comment comment)
-	{
-		return comment;
-	}
+	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Optional<Comment> findById(int comId)
 	{
@@ -44,7 +35,7 @@ public class CommentService {
 		}
 		catch(IllegalArgumentException e)
 		{
-			log.warn("In CommentService.findById() com_id was invalid. Returning null.");
+			log.warn("In CommentService.findById() com_id was invalid. Returning empty Optional.");
 		}
 		return Optional.empty();
 
@@ -59,10 +50,55 @@ public class CommentService {
 		}
 		catch(IllegalArgumentException e)
 		{
-			log.warn("In CommentService.findUserName() userName was invalid. Returning null.");
+			log.warn("In CommentService.findByUserId() userId was invalid. Returning null.");
 		}
 		return null;
 	}
 	
+	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public Comment insert(Comment comment)
+	{
+		try
+		{
+		return commentDao.insert(comment);
+		}
+		catch(IllegalArgumentException e)
+		{
+			log.warn("In CommentService.insert() comment was invalid. Returning null.");
+		}
+		return null;
+		
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public boolean update(Comment comment)
+	{
+		try
+		{
+		return commentDao.update(comment);
+		}
+		catch(IllegalArgumentException e)
+		{
+			log.warn("In CommentService.update() comment was invalid. Returning false.");
+		}
+		return false;
+		
+	}
+		
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public boolean deleteById(int id)
+	{
+		try
+		{
+		return commentDao.deleteById(id);
+		}
+		catch(IllegalArgumentException e)
+		{
+			log.warn("In CommentService.deleteById() comment was invalid. Returning false.");
+		}
+		return false;
+		
+	}
 	
 }
