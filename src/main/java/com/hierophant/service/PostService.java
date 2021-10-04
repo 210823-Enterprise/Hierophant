@@ -33,7 +33,7 @@ public class PostService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Post> findById(int com_id)
+	public Optional<Post> findById(int comId)
 	{
 
 		try
@@ -65,7 +65,7 @@ public class PostService {
 
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public List<Post> findByUserId(int user_id)
+	public List<Post> findByUserId(int userId)
 	{
 
 		
@@ -82,7 +82,7 @@ public class PostService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Optional<Post> findByTitle(String post_title)
+	public Optional<Post> findByTitle(String postTitle)
 	{
 
 		try
