@@ -21,7 +21,6 @@ public class ImageController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Image>> findById(@PathVariable("id") int id) {
-//		return null;
 		return ResponseEntity.ok(imageService.findById(id));
 	}
 	

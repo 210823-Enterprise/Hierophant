@@ -21,7 +21,6 @@ public class CommentController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Comment>> findById(@PathVariable("id") int comId) {
-		// return null;
 		return ResponseEntity.ok(commentService.findById(comId));
 	}
 	
@@ -33,7 +32,6 @@ public class CommentController {
 
 	@GetMapping("/user/{id}")
 	public ResponseEntity<List<Comment>> findByUserId(@PathVariable("id") int userId) {
-		// return null;
 		return ResponseEntity.ok(commentService.findByUserId(userId));
 	}
 	
