@@ -21,13 +21,11 @@ public class PostController {
 	
 	@GetMapping("/{title}")
 	public ResponseEntity<Optional<Post>> findByTitle(@PathVariable("title") String postTitle) {
-//		return null;
 		return ResponseEntity.ok(postService.findByTitle(postTitle));
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Post>> findById(@PathVariable("id") int comId) {
-//		return null;
 		return ResponseEntity.ok(postService.findById(comId));
 	}
 	
@@ -39,7 +37,6 @@ public class PostController {
 
 	@GetMapping("/user/{id}")
 	public ResponseEntity<List<Post>> findByUserId(@PathVariable("id") int userId) {
-//		return null;
 		return ResponseEntity.ok(postService.findByUserId(userId));
 	}
 	
