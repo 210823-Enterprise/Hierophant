@@ -30,15 +30,13 @@ public class UserController {
 	public ResponseEntity<Optional<User>> findById(@PathVariable("id") int id) {
 		// call the service method, pass the capture id through, and return it as
 		// response entity with 200 OK status
-		return null;
-//		return ResponseEntity.ok(userService.findById(id));
+		return ResponseEntity.ok(userService.findById(id));
 	}
 
 	// Create a method that fetches the path variable for finding a user by their username
 	@GetMapping("/{username}")
-	public ResponseEntity<Optional<User>> findByUsername(@PathVariable("username") String username) {
-		return null;
-//		return ResponseEntity.ok(userService.findByUsername(username));
+	public ResponseEntity<Optional<User>> findByUsername(@PathVariable("username") String userName) {
+		return ResponseEntity.ok(userService.findByUserName(userName));
 	}
 	
 	// Later
