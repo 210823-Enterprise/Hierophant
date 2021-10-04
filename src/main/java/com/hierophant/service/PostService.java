@@ -20,17 +20,6 @@ public class PostService {
 	
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Post add(Post post)
-	{
-		return post;
-	}
-	
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public Post remove(Post post)
-	{
-		return post;
-	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Optional<Post> findById(int comId)
@@ -42,7 +31,7 @@ public class PostService {
 		}
 		catch(IllegalArgumentException e)
 		{
-			log.warn("In PostService.findById() com_id was invalid. Returning null.");
+			log.warn("In PostService.findById() comId was invalid. Returning empty Optional.");
 		}
 		return Optional.empty();
 	}
@@ -56,7 +45,7 @@ public class PostService {
 		}
 		catch(IllegalArgumentException e)
 		{
-			log.warn("In PostService.findByUsername() userName was invalid. Returning null.");
+			log.warn("In PostService.findByUserName() userName was invalid. Returning null.");
 		}
 		return null;
 		
@@ -75,7 +64,7 @@ public class PostService {
 		}
 		catch(IllegalArgumentException e)
 		{
-			log.warn("In PostService.findByUserId() user_id was invalid. Returning null.");
+			log.warn("In PostService.findByUserId() userId was invalid. Returning null.");
 		}
 		return null;
 
@@ -93,9 +82,53 @@ public class PostService {
 		}
 		catch(IllegalArgumentException e)
 		{
-			log.warn("In PostService.findByTitle() title was invalid. Returning null.");
+			log.warn("In PostService.findByTitle() postTitle was invalid. Returning empty Optional.");
 		}
 		return Optional.empty();
 
+	}
+	// inserts a post to the database
+	public Post insert(Post post)
+	{
+		try
+		{
+			return postDao.insert(post);	
+		}
+		catch(IllegalArgumentException e)
+		{
+			log.warn("In PostService.insert() post was invalid. Returning null.");
+		}
+		return null;
+		
+	}
+	
+	// updates a post in the database (edit)
+	public boolean update(Post post)
+	{
+		try
+		{
+			return postDao.update(post);	
+		}
+		catch(IllegalArgumentException e)
+		{
+			log.warn("In PostService.update() post was invalid. Returning false.");
+		}
+		return false;
+		
+	}
+	
+	// deletes a post from the database
+	public boolean deleteById(int id)
+	{
+		try
+		{
+			return postDao.deleteById(id);	
+		}
+		catch(IllegalArgumentException e)
+		{
+			log.warn("In PostService.deleteById() id was invalid. Returning false.");
+		}
+		return false;
+		
 	}
 }
