@@ -92,7 +92,7 @@ public class PostService {
 	{
 		try
 		{
-			return postDao.insert(post);	
+			return postDao.save(post);	
 		}
 		catch(IllegalArgumentException e)
 		{
@@ -103,32 +103,30 @@ public class PostService {
 	}
 	
 	// updates a post in the database (edit)
-	public boolean update(Post post)
+	public Post update(Post post)
 	{
 		try
 		{
-			return postDao.update(post);	
+			postDao.save(post);	
 		}
 		catch(IllegalArgumentException e)
 		{
 			log.warn("In PostService.update() post was invalid. Returning false.");
 		}
-		return false;
+		return null;
 		
 	}
 	
 	// deletes a post from the database
-	public boolean deleteById(int id)
+	public void deleteById(int id)
 	{
 		try
 		{
-			return postDao.deleteById(id);	
+			postDao.deleteById(id);	
 		}
 		catch(IllegalArgumentException e)
 		{
 			log.warn("In PostService.deleteById() id was invalid. Returning false.");
-		}
-		return false;
-		
+		}		
 	}
 }

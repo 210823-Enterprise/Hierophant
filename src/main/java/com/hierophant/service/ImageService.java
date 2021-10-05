@@ -35,11 +35,11 @@ public class ImageService {
 		return Optional.empty();
 	}
 	// inserts a image to the database
-		public Comment insert(Image image)
+		public Image insert(Image image)
 		{
 			try
 			{
-			return imgDao.insert(image);
+			return imgDao.save(image);
 			}
 			catch(IllegalArgumentException e)
 			{
@@ -50,34 +50,33 @@ public class ImageService {
 		}
 				
 		// updates a image in the database (edit)
-		public boolean update(Image image)
+		public Image update(Image image)
 		{
 			try
 			{
-			return imgDao.update(image);
+			return imgDao.save(image);
 			
 			}
 			catch(IllegalArgumentException e)
 			{
 				log.warn("In CommentService.update() image was invalid. Returning false.");
 			}
-			return false;
+			return null;
 			
 		}
 				
 		// deletes a image from the database
-		public boolean deleteById(int id)
+		public void deleteById(int id)
 		{
 			try
 			{
-			return imgDao.deleteById(id);
+				imgDao.deleteById(id);
 			
 			}
 			catch(IllegalArgumentException e)
 			{
 				log.warn("In CommentService.deleteById() image was invalid. Returning false.");
 			}
-			return false;
 			
 		}
 	
