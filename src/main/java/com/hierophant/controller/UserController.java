@@ -49,14 +49,16 @@ public class UserController {
 
 	// Using patch to accomadate update crud
 	@PatchMapping("/update") // The Valid annotation makes sure that User must comply with the restriction we set in the model
-	public ResponseEntity<Boolean> update(@Valid @RequestBody User u) { // we're taking in the User object in the HTTP RequestBody
+	public ResponseEntity<User> update(@Valid @RequestBody User u) { // we're taking in the User object in the HTTP RequestBody
 		return ResponseEntity.ok(userService.update(u));
 	}
 
 	// Using post to accomadate create crud
 	@DeleteMapping("/delete/{id}") // The Valid annotation makes sure that User must comply with the restriction we set in the model
 	public ResponseEntity<User> deleteById(@PathVariable("id") int id) { // we're taking in the User object in the HTTP RequestBody
-		return ResponseEntity.ok(userService.deleteById(id));
+		// Untested
+		userService.deleteById(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }

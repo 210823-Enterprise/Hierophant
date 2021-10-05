@@ -24,24 +24,26 @@ public class ImageController {
 
 	@Autowired
 	ImageService imageService;
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Image>> findById(@PathVariable("id") int id) {
 		return ResponseEntity.ok(imageService.findById(id));
 	}
-	
+
 	@PostMapping("/insert")
-	public ResponseEntity<Image> insert(@Valid @RequestBody Image i) {										
+	public ResponseEntity<Image> insert(@Valid @RequestBody Image i) {
 		return ResponseEntity.ok(imageService.insert(i));
 	}
-	
+
 	@PatchMapping("/update")
-	public ResponseEntity<Boolean> update(@Valid @RequestBody Image i) {										
+	public ResponseEntity<Image> update(@Valid @RequestBody Image i) {
 		return ResponseEntity.ok(imageService.update(i));
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Boolean> deleteById(@PathVariable("id") int id) {										
-		return ResponseEntity.ok(imageService.deleteById(id));
+	public ResponseEntity<Boolean> deleteById(@PathVariable("id") int id) {
+		// Untested
+		imageService.deleteById(id);
+		return ResponseEntity.noContent().build();
 	}
 }

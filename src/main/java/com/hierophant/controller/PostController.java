@@ -24,7 +24,7 @@ import com.hierophant.service.PostService;
 public class PostController {
 	@Autowired
 	PostService postService;
-	
+
 	@GetMapping("/{title}")
 	public ResponseEntity<Optional<Post>> findByTitle(@PathVariable("title") String postTitle) {
 		return ResponseEntity.ok(postService.findByTitle(postTitle));
@@ -34,7 +34,7 @@ public class PostController {
 	public ResponseEntity<Optional<Post>> findById(@PathVariable("id") int comId) {
 		return ResponseEntity.ok(postService.findById(comId));
 	}
-	
+
 //	@GetMapping("/user/{username}")
 //	public ResponseEntity<List<Post>> findByUserName(@PathVariable("username") String userName) {
 ////		return null;
@@ -45,19 +45,21 @@ public class PostController {
 	public ResponseEntity<List<Post>> findByUserId(@PathVariable("id") int userId) {
 		return ResponseEntity.ok(postService.findByUserId(userId));
 	}
-	
+
 	@PostMapping("/insert")
-	public ResponseEntity<Post> insert(@Valid @RequestBody Post p) { 											
+	public ResponseEntity<Post> insert(@Valid @RequestBody Post p) {
 		return ResponseEntity.ok(postService.insert(p));
 	}
-	
+
 	@PatchMapping("/update")
-	public ResponseEntity<Post> update(@Valid @RequestBody Post p) { 											
+	public ResponseEntity<Post> update(@Valid @RequestBody Post p) {
 		return ResponseEntity.ok(postService.update(p));
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Post> deleteById(@PathVariable("id") int userId) { 											
-		return ResponseEntity.ok(postService.deleteById(userId));
+	public ResponseEntity<Post> deleteById(@PathVariable("id") int userId) {
+		// Untested
+		postService.deleteById(userId);
+		return ResponseEntity.noContent().build();
 	}
 }
