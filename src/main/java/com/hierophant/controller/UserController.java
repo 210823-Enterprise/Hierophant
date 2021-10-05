@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,11 +27,11 @@ public class UserController {
 	UserService userService;
 
 	// GET request that reads the id from the query parameter
-	// ResponseEntity allows us to send back custom HTTP status & headers within the HTTP response
+	// ResponseEntity allows us to send back custom HTTP status & headers within the
+	// HTTP response
 	@GetMapping("/{id}") // if I send a get request to http://localhost:5000/hierophant/users/5, it will capture 5 and search the User table for it
 	public ResponseEntity<Optional<User>> findById(@PathVariable("id") int id) {
-		// call the service method, pass the capture id through, and return it as
-		// response entity with 200 OK status
+		// call the service method, pass the capture id through, and return it as response entity with 200 OK status
 		return ResponseEntity.ok(userService.findById(id));
 	}
 
@@ -38,11 +40,25 @@ public class UserController {
 	public ResponseEntity<Optional<User>> findByUsername(@PathVariable("username") String userName) {
 		return ResponseEntity.ok(userService.findByUserName(userName));
 	}
-	
-	// Later
-//	@PostMapping("/register") // The Valid annotation makes sure that User must comply with the restriction we set in the model
-//	public ResponseEntity<User> register(@Valid @RequestBody User u) { // we're taking in the User object in the HTTP RequestBody						
-//		return ResponseEntity.ok(userService.insert(u));
-//	}
-	
+
+	// Using post to accomadate create crud
+	@PostMapping("/register") // The Valid annotation makes sure that User must comply with the restriction we set in the model
+	public ResponseEntity<User> insert(@Valid @RequestBody User u) { // we're taking in the User object in the HTTP RequestBody
+		return ResponseEntity.ok(userService.insert(u));
+	}
+
+	// Using patch to accomadate update crud
+	@PatchMapping("/update") // The Valid annotation makes sure that User must comply with the restriction we set in the model
+	public ResponseEntity<User> update(@Valid @RequestBody User u) { // we're taking in the User object in the HTTP RequestBody
+		return ResponseEntity.ok(userService.update(u));
+	}
+
+	// Using post to accomadate create crud
+	@DeleteMapping("/delete/{id}") // The Valid annotation makes sure that User must comply with the restriction we set in the model
+	public ResponseEntity<Void> deleteById(@PathVariable("id") int id) { // we're taking in the User object in the HTTP RequestBody
+		// Untested
+		userService.deleteById(id);
+		return ResponseEntity.noContent().build();
+	}
+
 }
