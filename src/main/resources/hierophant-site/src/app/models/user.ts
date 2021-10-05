@@ -1,33 +1,23 @@
 export class User {
 
-    firstName: string;
-    lastName: string;
+    userId: number;
     username: string;
     password: string;
     email: string;
-    addresses: any[];
+    comments: any[];
 
-    constructor(firstName: string, lastName: string, username: string, password: string, email: string, addresses:any[]) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.addresses = addresses;
+    constructor(
+        userId: number,
+        username: string,
+        password: string,
+        email: string,
+        comments: any[]
+    ) {
+        this.userId = userId
+        this.username = username
+        this.password = password
+        this.email = email
+        this.comments = comments
     }
-}
 
-export class Address {
-
-    street: string;
-    secondary: string;
-    state: string;
-    city: string;
-
-    constructor(street: string, secondary: string, state: string, city: string) {
-        this.street = street;
-        this.secondary = secondary;
-        this.state = state;
-        this.city = city;
-    }
 }
