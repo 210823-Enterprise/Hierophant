@@ -54,7 +54,7 @@ public class UserService {
 		{
 			try
 			{
-				return userDao.insert(user);	
+				return userDao.save(user);	
 			}
 			catch(IllegalArgumentException e)
 			{
@@ -65,33 +65,31 @@ public class UserService {
 		}
 		
 		// updates user in database
-		public boolean update(User user)
+		public User update(User user)
 		{
 			try
 			{
-				return userDao.update(user);	
+				return userDao.save(user);	
 			}
 			catch(IllegalArgumentException e)
 			{
 				log.warn("In UserService.update() user was invalid. Returning false.");
 			}
-			return false;
+			return null;
 			
 		}
 		
 		// deletes a user from the database
-		public boolean deleteById(int id) 
+		public void deleteById(int id) 
 		{
 			try
 			{
-				return userDao.deleteById(id);	
+				userDao.deleteById(id);	
 			}
 			catch(IllegalArgumentException e)
 			{
 				log.warn("In UserService.deleteById() id was invalid. Returning false.");
-			}
-			return false;
-			
+			}			
 		}
 	
 }

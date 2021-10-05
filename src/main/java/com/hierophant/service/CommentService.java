@@ -61,7 +61,7 @@ public class CommentService {
 	{
 		try
 		{
-		return commentDao.insert(comment);
+		return commentDao.save(comment);
 		}
 		catch(IllegalArgumentException e)
 		{
@@ -72,33 +72,31 @@ public class CommentService {
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public boolean update(Comment comment)
+	public Comment update(Comment comment)
 	{
 		try
 		{
-		return commentDao.update(comment);
+		return commentDao.save(comment);
 		}
 		catch(IllegalArgumentException e)
 		{
 			log.warn("In CommentService.update() comment was invalid. Returning false.");
 		}
-		return false;
+		return null;
 		
 	}
 		
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public boolean deleteById(int id)
+	public void deleteById(int id)
 	{
 		try
 		{
-		return commentDao.deleteById(id);
+			commentDao.deleteById(id);
 		}
 		catch(IllegalArgumentException e)
 		{
 			log.warn("In CommentService.deleteById() comment was invalid. Returning false.");
-		}
-		return false;
-		
+		}		
 	}
 	
 }
