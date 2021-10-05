@@ -55,7 +55,7 @@ public class UserController {
 
 	// Using post to accomadate create crud
 	@DeleteMapping("/delete/{id}") // The Valid annotation makes sure that User must comply with the restriction we set in the model
-	public ResponseEntity<User> deleteById(@PathVariable("id") int id) { // we're taking in the User object in the HTTP RequestBody
+	public ResponseEntity<Void> deleteById(@PathVariable("id") int id) { // we're taking in the User object in the HTTP RequestBody
 		// Untested
 		userService.deleteById(id);
 		return ResponseEntity.noContent().build();

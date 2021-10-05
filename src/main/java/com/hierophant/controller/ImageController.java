@@ -41,7 +41,7 @@ public class ImageController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Boolean> deleteById(@PathVariable("id") int id) {
+	public ResponseEntity<Void> deleteById(@PathVariable("id") int id) {
 		// Untested
 		imageService.deleteById(id);
 		return ResponseEntity.noContent().build();
