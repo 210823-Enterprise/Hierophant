@@ -20,13 +20,4 @@ public interface CommentDao extends JpaRepository<Comment, Integer> {
 	// finds all the comments from a specific user
 //	public List<Comment> findByUsername(String userName);
 	public List<Comment> findByUserId(int userId);
-	
-	// inserts a comment to the database
-	public Comment insert(Comment comment);
-		
-	// updates a comment in the database (edit)
-	public boolean update(Comment comment);
-		
-	// deletes a comment from the database
-	public boolean deleteById(int id);
 }

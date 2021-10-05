@@ -15,13 +15,4 @@ public interface UserDao extends JpaRepository<User, Integer>{
 	
 	// finds the user based on their id
 	public Optional<User> findById(int id);
-	
-	// adds a user to the database
-	public User insert(User user);
-	
-	// updates user in database
-	public boolean update(User user);
-	
-	// deletes a user from the database
-	public boolean deleteById(int id);
 }
