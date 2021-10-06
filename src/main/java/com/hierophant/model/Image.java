@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@OneToOne(mappedBy = "post_image_id") // THIS IS THE ONLY ONE THAT CAUSE THE ERROR I HAVE TO COMMENT IT OUT
 	private int imageId;
 	
 	private String imgHtml;//html link to template

@@ -1,6 +1,7 @@
 package com.hierophant.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -50,4 +51,10 @@ public class User {
 	
 	@Email // must contain @ and .something
 	private String email;// user email, email format
+	
+	 @OneToMany(mappedBy = "userId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+	 private List<Post> posts;
+
+	 @OneToMany(mappedBy = "userId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+	 private List<Comment> comment;
 }

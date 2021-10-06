@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -38,9 +39,9 @@ public class Post {
 	private int postId;// unique id for each post
 
 	private String title;
-	
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity=User.class)
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity=User.class, cascade = CascadeType.ALL)
+	@JoinTable(name = "userPost", 
+			inverseJoinColumns={@JoinColumn(name="userId")})
 	private User userId;
 
 	@OneToOne(cascade = CascadeType.ALL, targetEntity=Image.class)
