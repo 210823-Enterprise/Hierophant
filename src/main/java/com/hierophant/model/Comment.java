@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,9 +27,14 @@ public class Comment {
 	private int comId;// unique id for each comment
 
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity=User.class)
+	@JoinTable(name = "userComment",
+			inverseJoinColumns={@JoinColumn(name="userId")}
+			)
 	private User userId;
 
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity=Post.class)
+	@JoinTable(name = "comPost", 
+			inverseJoinColumns={@JoinColumn(name="postId")})
 	private Post postId;
 	
 	private String commText;
