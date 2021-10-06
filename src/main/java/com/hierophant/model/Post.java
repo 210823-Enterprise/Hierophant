@@ -21,6 +21,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -42,11 +45,17 @@ public class Post {
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity=User.class, cascade = CascadeType.ALL)
 	@JoinTable(name = "userPost", 
 			inverseJoinColumns={@JoinColumn(name="userId")})
+	@JsonBackReference(value="userPost")
 	private User userId;
 
 	@OneToOne(cascade = CascadeType.ALL, targetEntity=Image.class)
     @JoinColumn(name = "postImageId", referencedColumnName = "imageId")
 	private Image image;
 
+	 @OneToMany(mappedBy = "postId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+	 @Column(nullable = true)
+	 @JsonManagedReference(value="postCom")
+	 private List<Comment> comments;
+	
 	private int upvotes;
 }
