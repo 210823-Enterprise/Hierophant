@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hierophant.model.Comment;
@@ -25,8 +26,8 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Comment>> findById(@PathVariable("id") int comId) {
+	@GetMapping("/find")
+	public ResponseEntity<Optional<Comment>> findById(@RequestParam("id") int comId) {
 		return ResponseEntity.ok(commentService.findById(comId));
 	}
 
@@ -36,8 +37,8 @@ public class CommentController {
 //		return ResponseEntity.ok(commentService.findByUserName(userName));
 //	}
 
-	@GetMapping("/user/{id}")
-	public ResponseEntity<List<Comment>> findByUserId(@PathVariable("id") int userId) {
+	@GetMapping("/user")
+	public ResponseEntity<List<Comment>> findByUserId(@RequestParam("id") int userId) {
 		return ResponseEntity.ok(commentService.findByUserId(userId));
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hierophant.model.Image;
@@ -25,8 +26,8 @@ public class ImageController {
 	@Autowired
 	ImageService imageService;
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Image>> findById(@PathVariable("id") int id) {
+	@GetMapping("/find")
+	public ResponseEntity<Optional<Image>> findById(@RequestParam("id") int id) {
 		return ResponseEntity.ok(imageService.findById(id));
 	}
 
