@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hierophant.model.Post;
@@ -25,13 +26,13 @@ public class PostController {
 	@Autowired
 	PostService postService;
 
-	@GetMapping("/{title}")
-	public ResponseEntity<Optional<Post>> findByTitle(@PathVariable("title") String postTitle) {
+	@GetMapping("/find")
+	public ResponseEntity<Optional<Post>> findByTitle(@RequestParam("title") String postTitle) {
 		return ResponseEntity.ok(postService.findByTitle(postTitle));
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Post>> findById(@PathVariable("id") int comId) {
+	@GetMapping("/findBy")
+	public ResponseEntity<Optional<Post>> findById(@RequestParam("id") int comId) {
 		return ResponseEntity.ok(postService.findById(comId));
 	}
 
@@ -41,8 +42,8 @@ public class PostController {
 //		return ResponseEntity.ok(postService.findByUserName(userName));
 //	}
 
-	@GetMapping("/user/{id}")
-	public ResponseEntity<List<Post>> findByUserId(@PathVariable("id") int userId) {
+	@GetMapping("/user")
+	public ResponseEntity<List<Post>> findByUserId(@RequestParam("id") int userId) {
 		return ResponseEntity.ok(postService.findByUserId(userId));
 	}
 
