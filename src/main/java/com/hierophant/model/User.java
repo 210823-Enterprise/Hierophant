@@ -50,8 +50,4 @@ public class User {
 	
 	@Email // must contain @ and .something
 	private String email;// user email, email format
-	
-	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity=Comment.class)
-	private List<Comment> comments = new ArrayList<>();
-
 }
