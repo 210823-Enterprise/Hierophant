@@ -1,5 +1,6 @@
 package com.hierophant.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -41,6 +42,12 @@ public class UserController {
 	@GetMapping("/findBy")
 	public ResponseEntity<Optional<User>> findByUsername(@RequestParam("username") String userName) {
 		return ResponseEntity.ok(userService.findByUserName(userName));
+	}
+	
+	// Create a method that fetches all users
+	@GetMapping("/findAll")
+	public ResponseEntity<List<User>> findAll() {
+		return ResponseEntity.ok(userService.findAll());
 	}
 
 	// Using post to accomadate create crud

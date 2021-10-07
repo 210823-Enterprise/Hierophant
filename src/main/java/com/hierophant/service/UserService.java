@@ -1,5 +1,6 @@
 package com.hierophant.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -89,6 +90,17 @@ public class UserService {
 			catch(IllegalArgumentException e)
 			{
 				log.warn("In UserService.deleteById() id was invalid. Returning false.");
+			}			
+		}
+		
+		public List<User> findAll() {
+			try {
+				return userDao.findAll();
+			}
+			catch(IllegalArgumentException e)
+			{
+				log.warn("In UserService.findAll() Something went wrong. Returning null.");
+				return null;
 			}			
 		}
 	
