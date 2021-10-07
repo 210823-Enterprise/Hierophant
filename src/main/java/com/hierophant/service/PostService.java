@@ -129,4 +129,14 @@ public class PostService {
 			log.warn("In PostService.deleteById() id was invalid. Returning false.");
 		}		
 	}
+	
+	public List<Post> findAll() {
+		try {
+			return postDao.findAll();
+		} catch(IllegalArgumentException e)
+		{
+			log.warn("In PostService.findAll() something went wrong. Returning null.");
+			return null;
+		}
+	}
 }
