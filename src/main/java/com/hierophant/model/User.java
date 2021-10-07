@@ -54,12 +54,12 @@ public class User {
 	@Email // must contain @ and .something
 	private String email;// user email, email format
 	
-	 @OneToMany(mappedBy = "userId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+	 @OneToMany(mappedBy = "userId", cascade= {CascadeType.REMOVE, CascadeType.DETACH}) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
 	 @Column(nullable = true)
 	 @JsonManagedReference(value="userPost")
 	 private List<Post> posts;
 
-	 @OneToMany(mappedBy = "userId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+	 @OneToMany(mappedBy = "userId", cascade= {CascadeType.REMOVE, CascadeType.DETACH}) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
 	 @Column(nullable = true)
 	 @JsonManagedReference(value="userCom")
 	 private List<Comment> comments;

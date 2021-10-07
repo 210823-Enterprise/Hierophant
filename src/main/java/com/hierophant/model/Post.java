@@ -42,7 +42,7 @@ public class Post {
 	private int postId;// unique id for each post
 
 	private String title;
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity=User.class, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity=User.class)
 	@JoinTable(name = "userPost", 
 			inverseJoinColumns={@JoinColumn(name="userId")})
 	@JsonBackReference(value="userPost")
@@ -52,7 +52,7 @@ public class Post {
     @JoinColumn(name = "postImageId", referencedColumnName = "imageId")
 	private Image image;
 
-	 @OneToMany(mappedBy = "postId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+	 @OneToMany(mappedBy = "postId") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
 	 @Column(nullable = true)
 	 @JsonManagedReference(value="postCom")
 	 private List<Comment> comments;
