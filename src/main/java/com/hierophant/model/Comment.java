@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,11 +32,13 @@ public class Comment {
 	@JoinTable(name = "userComment",
 			inverseJoinColumns={@JoinColumn(name="userId")}
 			)
+	@JsonBackReference(value="userCom")
 	private User userId;
 
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity=Post.class)
 	@JoinTable(name = "comPost", 
 			inverseJoinColumns={@JoinColumn(name="postId")})
+	@JsonBackReference(value="postCom")
 	private Post postId;
 	
 	private String commText;

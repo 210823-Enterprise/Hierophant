@@ -28,6 +28,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -53,8 +55,12 @@ public class User {
 	private String email;// user email, email format
 	
 	 @OneToMany(mappedBy = "userId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+	 @Column(nullable = true)
+	 @JsonManagedReference(value="userPost")
 	 private List<Post> posts;
 
 	 @OneToMany(mappedBy = "userId", cascade=CascadeType.ALL) // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
-	 private List<Comment> comment;
+	 @Column(nullable = true)
+	 @JsonManagedReference(value="userCom")
+	 private List<Comment> comments;
 }
