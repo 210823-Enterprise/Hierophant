@@ -1,10 +1,8 @@
 package com.hierophant.Hierophant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -12,12 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.hierophant.model.Comment;
@@ -333,7 +327,7 @@ class HierophantApplicationTests {
 		
 		when(comServe.insert(com1)).thenReturn(com1);
 		
-		assert(comServe.insert(com1)) == com1;
+		assertEquals(comServe.insert(com1) , com1);
 		verify(comServe).insert(com1);
 	}
 	
@@ -347,7 +341,7 @@ class HierophantApplicationTests {
 		
 		when(comServe.update(com1)).thenReturn(com1);
 		
-		assert(comServe.update(com1)) == com1;
+		assertEquals(comServe.update(com1) , com1);
 		verify(comServe).update(com1);
 	}
 	
@@ -398,7 +392,7 @@ class HierophantApplicationTests {
 		post1.setUserId(user);
 		when(postServe.update(post1)).thenReturn(post1);
 		
-		assert(postServe.update(post1)) == post1;
+		assertEquals(postServe.update(post1) , post1);
 		verify(postServe).update(post1);
 	}
 	
@@ -469,9 +463,9 @@ class HierophantApplicationTests {
 		when(postServe.findByTitle("Tester123")).thenReturn(Opcom);
 		
 		
-		assert (postServe.findByTitle("Tester123")) != null;
-		assert (postServe.findByTitle("Tester123").get()) == post1;
 		
+		assertEquals(postServe.findByTitle("Tester123").get() , post1);
+		verify(postServe).findByTitle(post1.getTitle());
 	}
 	
 	
@@ -491,12 +485,12 @@ class HierophantApplicationTests {
 		user1.setPassword("ThisIsAPassword");
 		Optional<User> Opuser = Optional.ofNullable(user1);
 		
-		when(uServe.findById(1)).thenReturn(Opuser);
+		when(uServe.findById(user1.getUserId())).thenReturn(Opuser);
 		
 		
-		assert (uServe.findById(1)) != null;
-		assert (uServe.findById(1).get()) == user1;
-		
+	
+		assertEquals(uServe.findById(user1.getUserId()) , Opuser);
+		verify(uServe).findById(user1.getUserId());
 	}
 	
 	@Test
@@ -510,8 +504,8 @@ class HierophantApplicationTests {
 		user1.setPassword("ThisIsAPassword");
 		when(uServe.insert(user1)).thenReturn(user1);
 		
-		assert(uServe.insert(user1)) == user1;
-		
+		assertEquals(uServe.insert(user1) , user1);
+		verify(uServe).insert(user1);
 	}
 	
 	@Test
@@ -523,8 +517,8 @@ class HierophantApplicationTests {
 		
 		when(uServe.update(user1)).thenReturn(user1);
 		
-		assert(uServe.update(user1)) == user1;
-		
+		assertEquals(uServe.update(user1) ,user1);
+		verify(uServe).update(user1);
 	}
 	
 	
@@ -543,9 +537,10 @@ class HierophantApplicationTests {
 		img.setImageId(100);
 		img.setImgHtml("http://someurlforanimg.com/image");
 		
-		when(IServe.findById(1)).thenReturn(Optional.ofNullable(img));
+		when(IServe.findById(img.getImageId())).thenReturn(Optional.ofNullable(img));
 		
-		assertEquals(IServe.findById(1) , Optional.ofNullable(img));
+		assertEquals(IServe.findById(img.getImageId()) , Optional.ofNullable(img));
+		verify(IServe).findById(img.getImageId());
 	}
 	
 	@Test
@@ -562,6 +557,7 @@ class HierophantApplicationTests {
 		when(IServe.insert(img)).thenReturn(img);
 		
 		assertEquals(IServe.insert(img) , img);
+		verify(IServe).insert(img);
 	}
 	@Test
 	void testImageServiceUpdate()
@@ -577,6 +573,7 @@ class HierophantApplicationTests {
 		when(IServe.update(img)).thenReturn(img);
 		
 		assertEquals(IServe.update(img) , img);
+		verify(IServe).update(img);
 	}
 	
 	
